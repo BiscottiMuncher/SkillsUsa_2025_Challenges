@@ -13,13 +13,11 @@
         const char *ip = ARRT; 
         int port = 2025;                 
 
-        // Create UDP socket
         if ((sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
             perror("socket creation failed");
             exit(EXIT_FAILURE);
         }
 
-        // Setup destination address
         memset(&dest_addr, 0, sizeof(dest_addr));
         dest_addr.sin_family = AF_INET;
         dest_addr.sin_port = htons(port);
@@ -29,7 +27,6 @@
             exit(EXIT_FAILURE);
         }
 
-        // Send UDP packet
         if (sendto(sockfd, message, strlen(message), 0, (struct sockaddr *)&dest_addr, sizeof(dest_addr)) < 0) 
         {
             perror("sendto failed");
